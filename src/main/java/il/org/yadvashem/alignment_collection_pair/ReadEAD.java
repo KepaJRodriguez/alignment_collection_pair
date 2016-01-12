@@ -23,6 +23,7 @@ public class ReadEAD {
 
 		boolean scopecontent = false;
 		boolean bioghist = false;
+		boolean custodhist = false;
 		boolean odd = false;
 		boolean langmaterial = false;
 
@@ -44,6 +45,9 @@ public class ReadEAD {
 				case "bioghist":
 					bioghist = true;
 					break;
+				case "custodhist":
+					custodhist = true;
+					break;
 				case "odd":
 					odd = true;
 					break;
@@ -53,7 +57,7 @@ public class ReadEAD {
 
 				case "language":
 					if (langmaterial == true) {
-						String lang = xmlStreamReader.getAttributePrefix(0);
+						String lang = xmlStreamReader.getAttributeValue(0);
 						col.LANG_MAT.add(lang);
 					}
 					break;
@@ -65,6 +69,19 @@ public class ReadEAD {
 				textContent = xmlStreamReader.getText();
 				break;
 
+			case XMLStreamConstants.CDATA:
+				textContent = xmlStreamReader.getText();
+				if (scopecontent == true) {
+					col.SCOPE_CONTENT.add(textContent);
+				}
+				if (bioghist == true) {
+					col.BIOGHIST = textContent;
+				}
+				if (odd == true) {
+					col.ODD.add(textContent);
+				}
+				break;
+				
 			case XMLStreamConstants.END_ELEMENT:
 				switch (xmlStreamReader.getLocalName()) {
 				case "p":
@@ -73,6 +90,9 @@ public class ReadEAD {
 					}
 					if (bioghist == true) {
 						col.BIOGHIST = textContent;
+					}
+					if (custodhist == true) {
+						col.CUSTODHIST = textContent;
 					}
 					if (odd == true) {
 						col.ODD.add(textContent);
@@ -94,6 +114,11 @@ public class ReadEAD {
 				case "corpname":
 					col.AP_ORGANIZATION.add(textContent);
 					break;
+					
+				case "persname":
+					col.AP_PERSON.add(textContent);
+					break;
+
 
 				case "subject":
 					col.AP_SUBJECTS.add(textContent);
@@ -108,7 +133,7 @@ public class ReadEAD {
 					odd = false;
 					break;
 				case "langmaterial":
-					odd = false;
+					langmaterial = false;
 					break;
 
 				case "physdesc":
