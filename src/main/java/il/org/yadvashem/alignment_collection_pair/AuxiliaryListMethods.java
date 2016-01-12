@@ -14,5 +14,17 @@ public class AuxiliaryListMethods {
 		arrayList.addAll(set);
 		return arrayList;
 	}
+
+	static String list2string (List<String> arrayList) {
+		String tobeprinted = "";
+		
+		for (int i=0; i < arrayList.size(); i++){
+			tobeprinted = tobeprinted + arrayList.get(i) + "\n";
+		}
+		
+		return tobeprinted;
+				
+	}
+	
 	
 }
