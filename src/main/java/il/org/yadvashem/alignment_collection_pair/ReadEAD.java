@@ -87,6 +87,9 @@ public class ReadEAD {
 				case "p":
 					if (scopecontent == true) {
 						col.SCOPE_CONTENT.add(textContent);
+						if (collection_level == true){
+							col.SCOPE_CONTENT_COLLECTION = textContent;
+						}
 					}
 					if (bioghist == true) {
 						col.BIOGHIST = textContent;
