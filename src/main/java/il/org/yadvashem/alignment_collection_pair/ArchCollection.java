@@ -21,6 +21,7 @@ public class ArchCollection {
 	String CUSTODHIST = "";
 	String BIOGHIST = "";
 	String PHYSDESC = "";
+	String SCOPE_CONTENT_COLLECTION = "";
 	
 
 	
