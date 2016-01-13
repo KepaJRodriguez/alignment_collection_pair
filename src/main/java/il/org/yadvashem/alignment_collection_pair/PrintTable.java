@@ -41,6 +41,11 @@ public class PrintTable {
 		nextRow = line.split("#");
 		writer.writeNext(nextRow);
 		
+		line = "Scope And Content (Collection)" + "#" + col_1.SCOPE_CONTENT_COLLECTION + "#"
+				+ col_2.SCOPE_CONTENT_COLLECTION;
+		nextRow = line.split("#");
+		writer.writeNext(nextRow);
+		
 		line = "ODD" + "#"
 				+ AuxiliaryListMethods.list2string(AuxiliaryListMethods.removeDuplicates(col_1.ODD)) + "#"
 				+ AuxiliaryListMethods.list2string(AuxiliaryListMethods.removeDuplicates(col_2.ODD));
